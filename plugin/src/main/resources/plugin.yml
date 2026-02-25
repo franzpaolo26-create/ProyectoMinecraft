@@ -1,0 +1,11 @@
+name: SkyWarsStatsAddon
+version: 1.0
+main: com.skywars.statsaddon.SkyWarsStatsAddon
+api-version: 1.20
+depend: [SkyWarsUp, PlaceholderAPI]
+commands:
+  swareset: {description: Resetear arenas, permission: skywars.admin}
+  swastart: {description: Iniciar arena, permission: skywars.admin}
+  swastop:  {description: Parar arena,   permission: skywars.admin}
+permissions:
+  skywars.admin: {default: op}
