@@ -1,0 +1,19 @@
+.root {
+  --bg: #080c10;
+  --surface: #0d1117;
+  --surface2: #161b22;
+  --border: #21262d;
+  --accent: #00ff88;
+  --accent2: #00cfff;
+  --danger: #ff4444;
+  --warn: #ffaa00;
+  --text: #e6edf3;
+  --muted: #8b949e;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+}
