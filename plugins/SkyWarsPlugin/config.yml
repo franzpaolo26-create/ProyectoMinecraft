@@ -1,0 +1,9 @@
+backend:
+  url: "https://api.servicelmbarcelona.es"
+  plugin-key: "skywars-secret-key-2026"
+  timeout-seconds: 5
+
+game:
+  min-players: 2
+  arena-name: "arena_principal"
+  auto-end-on-last-player: true

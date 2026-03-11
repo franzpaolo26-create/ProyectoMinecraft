@@ -1,0 +1,28 @@
+{
+  "stats": {
+    "minecraft:custom": {
+      "minecraft:time_since_rest": 29944,
+      "minecraft:walk_one_cm": 10962,
+      "minecraft:leave_game": 2,
+      "minecraft:damage_taken": 280,
+      "minecraft:play_time": 30034,
+      "minecraft:jump": 114,
+      "minecraft:time_since_death": 29920,
+      "minecraft:sprint_one_cm": 10357,
+      "minecraft:total_world_time": 41700,
+      "minecraft:fly_one_cm": 802933,
+      "minecraft:crouch_one_cm": 113,
+      "minecraft:sneak_time": 1564,
+      "minecraft:deaths": 1
+    },
+    "minecraft:used": {
+      "minecraft:birch_planks": 1,
+      "minecraft:writable_book": 14,
+      "minecraft:glass": 168,
+      "minecraft:chest": 16,
+      "minecraft:birch_slab": 2,
+      "minecraft:command_block": 14
+    }
+  },
+  "DataVersion": 4671
+}

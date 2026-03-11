@@ -1,0 +1,33 @@
+{
+  "stats": {
+    "minecraft:custom": {
+      "minecraft:sprint_one_cm": 24534,
+      "minecraft:time_since_rest": 43249,
+      "minecraft:walk_one_cm": 47057,
+      "minecraft:total_world_time": 62198,
+      "minecraft:leave_game": 2,
+      "minecraft:fly_one_cm": 465165,
+      "minecraft:crouch_one_cm": 202,
+      "minecraft:sneak_time": 1974,
+      "minecraft:play_time": 43249,
+      "minecraft:jump": 183,
+      "minecraft:time_since_death": 43249
+    },
+    "minecraft:picked_up": {
+      "minecraft:stick": 1,
+      "minecraft:oak_sapling": 2,
+      "minecraft:oak_button": 3
+    },
+    "minecraft:used": {
+      "minecraft:stone_brick_slab": 19,
+      "minecraft:writable_book": 7,
+      "minecraft:yellow_terracotta": 1,
+      "minecraft:oak_sign": 4,
+      "minecraft:cobblestone_wall": 8,
+      "minecraft:command_block": 15,
+      "minecraft:white_stained_glass": 25,
+      "minecraft:bedrock": 165
+    }
+  },
+  "DataVersion": 4671
+}
