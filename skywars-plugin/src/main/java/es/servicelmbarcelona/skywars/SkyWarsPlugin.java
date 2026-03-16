@@ -1,9 +1,8 @@
 package es.servicelmbarcelona.skywars;
 
 import es.servicelmbarcelona.skywars.api.BackendClient;
-import es.servicelmbarcelona.skywars.commands.SwCommand;
+import es.servicelmbarcelona.skywars.commands.SkyWarsCommand;
 import es.servicelmbarcelona.skywars.game.GameManager;
-import es.servicelmbarcelona.skywars.listeners.DeathListener;
 import es.servicelmbarcelona.skywars.listeners.PlayerListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,54 +12,38 @@ public class SkyWarsPlugin extends JavaPlugin {
     private BackendClient backendClient;
     private GameManager gameManager;
 
+    // Restauramos el método que necesita tu BackendClient
+    public static SkyWarsPlugin getInstance() {
+        return instance;
+    }
+
     @Override
     public void onEnable() {
-        getServer().getPluginManager().registerEvents(new es.servicelmbarcelona.skywars.listeners.LobbyProtectionListener(), this);
         instance = this;
-
         saveDefaultConfig();
-
-        String backendUrl = getConfig().getString("backend.url", "https://api.servicelmbarcelona.es");
-        String pluginKey  = getConfig().getString("backend.plugin-key", "");
-        int timeout       = getConfig().getInt("backend.timeout-seconds", 5);
-
-        backendClient = new BackendClient(backendUrl, pluginKey, timeout);
-        gameManager   = new GameManager(this);
-
-        getServer().getPluginManager().registerEvents(new DeathListener(this), this);
+        
+        // Alimentamos al BackendClient con los 3 datos que exige (String, String, int)
+        String apiUrl = getConfig().getString("api.url", "http://localhost");
+        String apiKey = getConfig().getString("api.key", "secret");
+        int apiPort = getConfig().getInt("api.port", 3000);
+        
+        this.backendClient = new BackendClient(apiUrl, apiKey, apiPort);
+        this.gameManager = new GameManager(this);
+        
+        getCommand("sw").setExecutor(new SkyWarsCommand(this));
+        
+        // Registramos el nuevo sistema de Menús e Ítems
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
 
-        SwCommand swCmd = new SwCommand(this);
-        getCommand("sw").setExecutor(swCmd);
-        getCommand("sw").setTabCompleter(swCmd);
-
-        getLogger().info("------------------------------");
-        org.bukkit.Bukkit.getScheduler().runTaskLater(this, () -> {
-            org.bukkit.World lw = org.bukkit.Bukkit.getWorld("lobby");
-            if (lw != null) lw.setDifficulty(org.bukkit.Difficulty.PEACEFUL);
-            org.bukkit.World sw = org.bukkit.Bukkit.getWorld("skywars");
-            if (sw != null) sw.setDifficulty(org.bukkit.Difficulty.NORMAL);
-        }, 100L);
-        getLogger().info("  SkyWars Plugin v2.0 ON");
-        getLogger().info("  Backend: " + backendUrl);
-        getLogger().info("------------------------------");
-        org.bukkit.Bukkit.getScheduler().runTaskLater(this, () -> {
-            org.bukkit.World lw = org.bukkit.Bukkit.getWorld("lobby");
-            if (lw != null) lw.setDifficulty(org.bukkit.Difficulty.PEACEFUL);
-            org.bukkit.World sw = org.bukkit.Bukkit.getWorld("skywars");
-            if (sw != null) sw.setDifficulty(org.bukkit.Difficulty.NORMAL);
-        }, 100L);
+        getLogger().info("SkyWarsPlugin Fase 1 (Menús) cargado con éxito.");
     }
 
     @Override
     public void onDisable() {
-        if (gameManager != null && gameManager.isGameRunning()) {
-            gameManager.forceEndGame();
-        }
-        getLogger().info("SkyWars Plugin desactivado.");
+        // Al apagarse el servidor, la conexión muere sola, no necesitamos forzar un disconnect()
+        getLogger().info("SkyWarsPlugin desactivado.");
     }
 
-    public static SkyWarsPlugin getInstance() { return instance; }
-    public BackendClient getBackendClient()    { return backendClient; }
-    public GameManager getGameManager()        { return gameManager; }
+    public BackendClient getBackendClient() { return backendClient; }
+    public GameManager getGameManager() { return gameManager; }
 }
