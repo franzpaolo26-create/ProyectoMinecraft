@@ -1,0 +1,17 @@
+name: SkyWarsPlugin
+version: 2.0.0
+main: es.servicelmbarcelona.skywars.SkyWarsPlugin
+api-version: '1.21'
+description: SkyWars stats plugin for servicelmbarcelona.es
+authors: [SkyWarsAdmin]
+
+commands:
+  sw:
+    description: SkyWars admin commands
+    usage: /sw <start|end|reload>
+    permission: skywars.admin
+
+permissions:
+  skywars.admin:
+    description: Access to SkyWars admin commands
+    default: op
